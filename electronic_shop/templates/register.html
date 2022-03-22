@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <div class="container py-5">
+        <h1>Register</h1>
+        <form method="POST">
+            {% csrf_token %}
+        {% comment %} First name:<br><input type="text" name="First name"><br> {% endcomment %}
+
+            {{ form.as_p }}                    
+
+            <div>
+                <label for="pass">Password (8 characters minimum):</label>
+                <input type="password" id="pass" name="password"
+                       minlength="8" required>
+            </div>
+            <input type="submit">
+        </form>
+        <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+    </div>
+</body>
+</html>
