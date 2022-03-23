@@ -1,0 +1,43 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+</head>
+<body>
+    {% comment %} <h1>UR account created</h1> {% endcomment %}
+    <div class="login">
+        <h1>Login</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+
+                {% comment %} <input type="text" name="username" placeholder="Username..." class="form-control"> {% endcomment %}
+                <input type="text" name="username" placeholder="Username" required="required" />
+            </div>
+
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+
+                    {% comment %} <input type="password" name="password" placeholder="Password..." class="form-control" > {% endcomment %}
+                    <input type="password" name="password" placeholder="Password" required="required" />
+            </div>
+
+                <div class="d-flex justify-content-center mt-3 login_container">
+                     {% comment %} <input class="btn login_btn" type="submit" value="Login"> {% endcomment %}
+                     <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+                </div>
+                <div class="d-flex justify-content-center mt-3 login_container">             
+        </form>
+        <p>Wanna Join Us ? Create Account</p><a class="btn btn-primary btn-block btn-large" href="{% url 'register' %}">Register</a>
+    </div>
+    
+</body>
+</html>

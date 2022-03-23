@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+    <title>Register</title>
+</head>
+<body>
+    <div class="login">
+        <h1>Register</h1>
+        <form method="POST">
+            {% csrf_token %}
+        {% comment %} First name:<br><input type="text" name="First name"><br> {% endcomment %}
+
+            {{ form.as_p }}                    
+
+            <div>
+                <label for="pass">Password (8 characters minimum):</label>
+                <input type="password" id="pass" name="password"
+                       minlength="8" required>
+            </div>
+            <input type="submit">
+        </form>
+        <p>If u an have account ?</p><a class="btn btn-primary btn-block btn-large" href="{% url 'login' %}">Login</a>
+    </div>
+</body>
+</html>
