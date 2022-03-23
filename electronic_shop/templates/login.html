@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {% comment %} <link rel="stylesheet" href="{% static '/css/login.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
 </head>
 <body>
     {% comment %} <h1>UR account created</h1> {% endcomment %}
-    <div class="container py-5">
+    <div class="login">
         <h1>Login</h1>
         <form method="POST" action="">
             {% csrf_token %}
@@ -17,7 +17,8 @@
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
 
-                <input type="text" name="username" placeholder="Username..." class="form-control">
+                {% comment %} <input type="text" name="username" placeholder="Username..." class="form-control"> {% endcomment %}
+                <input type="text" name="username" placeholder="Username" required="required" />
             </div>
 
             <div class="input-group mb-2">
@@ -25,23 +26,18 @@
                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
 
-                    <input type="password" name="password" placeholder="Password..." class="form-control" >
+                    {% comment %} <input type="password" name="password" placeholder="Password..." class="form-control" > {% endcomment %}
+                    <input type="password" name="password" placeholder="Password" required="required" />
             </div>
 
                 <div class="d-flex justify-content-center mt-3 login_container">
-                     <input class="btn login_btn" type="submit" value="Login">
-                   </div>
+                     {% comment %} <input class="btn login_btn" type="submit" value="Login"> {% endcomment %}
+                     <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+                </div>
+                <div class="d-flex justify-content-center mt-3 login_container">             
         </form>
+        <p>Wanna Join Us ? Create Account</p><a class="btn btn-primary btn-block btn-large" href="{% url 'register' %}">Register</a>
     </div>
+    
 </body>
 </html>
-
-{% comment %} 
-<div class="login">
-    <h1>Login</h1>
-      <form method="post">
-        <input type="text" name="u" placeholder="Username" required="required" />
-          <input type="password" name="p" placeholder="Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-      </form>
-  </div {% endcomment %}

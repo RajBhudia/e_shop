@@ -35,46 +35,38 @@ def register(request):
     return render (request=request, template_name="register.html", context={"form":form})
 
 
-def login(request):
+def login_view(request):
     # if request.user.is_authenticated:
     #     return redirect('customer')
     # else:
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password =request.POST.get('password')
+    username = request.POST.get('username')
+    password =request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            print(user)
-            if user.groups.filter(id=1).exists():
-                # print("#######################")
-                print(request.user)
-            # login(request, user)
-                return redirect('customer')
-            else:
-                print("............................")
-                return redirect('product_admin1')
+    user = authenticate(username = username, password = password)
+    if user:
+        login(request, user)
+        if request.user.groups.filter(id=1).exists():
+            return redirect('customer')
         else:
-            return render(request, 'login.html')    
+            return redirect('product_admin1')
     else:
-    # context = {}
-        return render(request, 'login.html')
+        return render(request, 'login.html')    
+    
 
-
-
-# @login_required(redirect_field_name=)
+@login_required()
 def customer(request):
-
     return render(request, 'customer.html')
     # return render(request, 'product_admin.html')
 
-# @login_required
+
+
+@login_required()
 def product_admin(request):
+    # if request.user.is_authenticated:
     return render(request, 'product_admin.html')
 
-def logout(request):
-    # logout(request)
+def logout_view(request):
+    logout(request)
     return redirect('login')
 
 def trail(request):
